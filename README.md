@@ -27,7 +27,10 @@ tube wideness: 80 px
 mr.brown: 40x40 px
 
 ### Collision
-Collision will be detected when Mr. Brown hits a pixel that is not coloured `eeeeee`.
+//Collision will be detected when Mr. Brown hits a pixel that is not coloured `eeeeee`.
+
+###Code
+I will repogram the game in Java while using the old resources. Also im programming with the worst free Java-Engine i could find, jme3. Not updated since 2016. Its the only I know how to program in.
 
 ### Tubes
 
