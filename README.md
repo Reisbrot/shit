@@ -1,4 +1,5 @@
 # klobot project
+## taken by Reisbrot
 
 Here are the files for a game that can be played on a toilet in the flipdot 
 hackerspace Kassel. The control interface is a touchless capacitive sensor that tracks the 
