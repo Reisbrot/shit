@@ -32,18 +32,21 @@ public class Main extends SimpleApplication {
     int count;
     Boolean isRunning = true;
     ParticleEmitter animation;
-    Material mat, bg, bg2;
+    Material mat, bg, bg2, bg3, bg4;
     Geometry pipe, pipe2, pipe3;
-    Texture pipe_basic, pipe010_010, pipe010_010long, pipe010_010short, pipe001_001;
+    Texture pipe_basic, pipe010_010, pipe010_010long, pipe010_010short, pipe001_001, pipe010_001, pipe001_010;
 
     public static void main(String[] args) {
+
+        
         AppSettings settings = new AppSettings(true);
         settings.setTitle("104.27.140.189");
         settings.setUseJoysticks(true);
         settings.setFullscreen(true);
-        settings.setResolution(1440, 960);
+        settings.setResolution(1440, 900);
         Main app = new Main();
         app.setSettings(settings);
+        app.setShowSettings(false);
         app.start();
     }
 
@@ -77,15 +80,21 @@ public class Main extends SimpleApplication {
         pipe3 = new Geometry("Box", pipe_medi);
         bg = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
         bg2 = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+        bg3 = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+        bg4 = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
         pipe010_010 = assetManager.loadTexture("Pipes/010-010.png");
         pipe010_010long = assetManager.loadTexture("Pipes/010-010_long.png");
         pipe010_010short = assetManager.loadTexture("Pipes/010-010_short.png");
         pipe001_001 = assetManager.loadTexture("Pipes/001-001.png");
+        pipe010_001 = assetManager.loadTexture("Pipes/010-001.png");
+        pipe001_010 = assetManager.loadTexture("Pipes/001-010.png");
           
         bg.setTexture("ColorMap", pipe010_010);
         bg2.setTexture("ColorMap", pipe001_001);
+        bg3.setTexture("ColorMap", pipe010_001);
+        bg4.setTexture("ColorMap", pipe001_010);
         pipe.setMaterial(bg);
-        pipe2.setMaterial(bg2);
+        pipe2.setMaterial(bg);
         pipe3.setMaterial(bg);
         pipe.setLocalTranslation(0, 0, 0);
         pipe2.setLocalTranslation(0, -10, 0);
@@ -102,15 +111,33 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleUpdate(float tpf) {
         System.out.println(pipe.getLocalTranslation().y);
-       if(pipe.getLocalTranslation().y < 5 || pipe2.getLocalTranslation().y < 5 || pipe3.getLocalTranslation().y < 5){
+       if(pipe.getLocalTranslation().y < 5 || pipe2.getLocalTranslation().y < 5 || pipe3.getLocalTranslation().y < 0){
            pipe.move(0f, 0.0003f, 0f);
            pipe2.move(0, 0.0003f, 0f);
            pipe3.move(0, 0.0003f, 0f);
        }
        else{
-           pipe.setLocalTranslation(0, 0, 0);
+           if(pipe3.getMaterial() == bg || pipe3.getMaterial() == bg4){
+               pipe.setMaterial(bg3);
+               pipe2.setMaterial(bg2);
+               if(new Random().nextInt(2) == 0)
+                    pipe3.setMaterial(bg2);
+               else pipe3.setMaterial(bg4);
+           }
+           else{
+               pipe.setMaterial(bg2);
+               pipe2.setMaterial(bg4);
+               if(new Random().nextInt(2) == 0)
+                    pipe3.setMaterial(bg);
+               else pipe3.setMaterial(bg4);
+           }
        }
-       
+       if(pipe.getLocalTranslation().y > 5f)
+       pipe.setLocalTranslation(0, 0, 0);
+       if(pipe2.getLocalTranslation().y > 5)
+       pipe2.setLocalTranslation(0, -10, 0);
+       if(pipe3.getLocalTranslation().y > 5)
+       pipe3.setLocalTranslation(0, -20, 0);
        count++;
        if(count == 1)
          shitPos1 = animation.getLocalTranslation();
