@@ -119,19 +119,19 @@ public class Main extends SimpleApplication {
        else{
         if(pipe2.getLocalTranslation().y > 9.4)
          pipe2.setLocalTranslation(0, -10, 0);
-        
+       } 
        
-        count++;
-        if(count == 1)
-         shitPos1 = animation.getLocalTranslation();
-        else
-        if(count == 100){
-          count = 0;
-          shitPos2 = animation.getLocalTranslation();
-          if(shitPos1.x == shitPos2.x && shitPos1.z == shitPos2.z)
-            setDefaultAnimation();
+       count++;
+         if(count == 1)
+           shitPos1 = animation.getLocalTranslation();
+         else
+           if(count == 100){
+             count = 0;
+             shitPos2 = animation.getLocalTranslation();
+             if(shitPos1.x == shitPos2.x && shitPos1.z == shitPos2.z)
+               setDefaultAnimation();
         }
-       }  
+         
     }
     
     private void initKeys() {
@@ -164,35 +164,31 @@ public class Main extends SimpleApplication {
     private AnalogListener analogListener = new AnalogListener() {
       public void onAnalog(String name, float value, float tpf) {
         if (isRunning) {
-          if (name.equals("Right")) {
+           if (name.equals("Right")) {
             Vector3f v = animation.getLocalTranslation();
             animation.setLocalTranslation(v.x + value*speed*3, v.y, v.z);
             mat.setTexture("ColorMap", assetManager.loadTexture("Spritesheets/mrbrownright_spritesheet.png"));
             animation.setMaterial(mat);
             animation.setImagesX(8);
           }
-          if (name.equals("Left")) {
+           if (name.equals("Left")) {
             Vector3f v = animation.getLocalTranslation();
             animation.setLocalTranslation(v.x - value*speed*3, v.y, v.z);
             mat.setTexture("ColorMap", assetManager.loadTexture("Spritesheets/mrbrownleft_spritesheet.png"));
             animation.setMaterial(mat);
             animation.setImagesX(8);
           }
-          if (name.equals("Up"))   {
+           if (name.equals("Up"))   {
             Vector3f v = animation.getLocalTranslation();
             animation.setLocalTranslation(v.x, v.y + value*speed*3, v.z); 
-            mat.setTexture("ColorMap", assetManager.loadTexture("Spritesheets/mrbrown_spritesheet.png"));
-            animation.setMaterial(mat);
-            animation.setImagesX(11);
+            setDefaultAnimation();
          }
           if (name.equals("Down")) {
             Vector3f v = animation.getLocalTranslation();
             animation.setLocalTranslation(v.x, v.y - value*speed*3, v.z);
-            mat.setTexture("ColorMap", assetManager.loadTexture("Spritesheets/mrbrown_spritesheet.png"));
-            animation.setMaterial(mat);
-            animation.setImagesX(11);
+            setDefaultAnimation();
          }
-        } else {
+       }  else {
           System.out.println("Press P to unpause.");
         }
       }
