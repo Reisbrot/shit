@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/111-101_ left.png-6dcc1a00c357b0b93f9c3498f701054c.stex"
+
+[deps]
+
+source_file="res://Pipes/111-101_ left.png"
+source_md5="801eeb93af15871116bfda80e0a45786"
+
+dest_files=[ "res://.import/111-101_ left.png-6dcc1a00c357b0b93f9c3498f701054c.stex" ]
+dest_md5="143eb7e0d8c5d7a4427a248dd024ad62"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
